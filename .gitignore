@@ -1,0 +1,22 @@
+# location of terraform modules after running `terraform get`
+.terraform
+
+# terraform state file that contains lots of secrets
+terraform.tfstate
+terraform.tfstate.backup
+
+# variables for environment (including secrets)
+terraform.tfvars
+
+# ssh keys used by bosh in AWS
+bosh-ssh
+bosh-ssh.pub
+
+# direnv tool for project environment variables
+.envrc
+
+# created bosh files
+bosh-cloud-config.yml
+bosh-director.yml
+bosh-director-state.json
+concourse.yml

@@ -1,0 +1,16 @@
+
+# whitelisted ip address ranges that are allowed access to systems.
+restricted_public_cidrs=["1.2.3.4/32","5.6.7.8/32"]
+
+bosh_ssh_public_key = "ssh-rsa abc....xyz cloud@DTO"
+
+vpc_cidr = "10.0.0.0/16"
+bosh_subnet_cidr = "10.0.0.0/24"
+public_cidrs = ["10.0.10.0/24","10.0.11.0/24","10.0.12.0/24"]
+management_cidrs = ["10.0.20.0/24","10.0.21.0/24","10.0.22.0/24"]
+private1_cidrs = ["10.0.30.0/24","10.0.31.0/24","10.0.32.0/24"]
+private2_cidrs = ["10.0.40.0/24","10.0.41.0/24","10.0.42.0/24"]
+private3_cidrs = ["10.0.50.0/24","10.0.51.0/24","10.0.52.0/24"]
+
+bosh_region = "ap-southeast-2"
+bosh_az = "ap-southeast-2a"
