@@ -1,6 +1,7 @@
 # AWS, Bosh and Concourse Infrastructure Provisioning
 This repository will provision AWS infrastructure, BOSH and Concourse.  From there you'll be ready to deploy applications and services for your projects.
 
+![Alt text](/aws-infrastructure-provision.jpg?raw=true "aws environment")
 ## prerequisites
 - terraform installed (https://www.terraform.io)
 - bosh-init installed (https://bosh.io/docs/install-bosh-init.html)
@@ -9,10 +10,10 @@ This repository will provision AWS infrastructure, BOSH and Concourse.  From the
 
 ## Steps
 #### 1. terraform provisioning of AWS resources
-- create an ssh keypair.
-  - place public key as variable `bosh_ssh_public_key`
-  - store private key in `terraform/environment/bosh-ssh`
 - create the `./terraform/environment/terraform.tfvars` file describing the desired settings (example is provided in `terraform/environment/terraform.tfvars.example`)
+- create an ssh keypair.
+  - place public key as variable `bosh_ssh_public_key` in `./terraform/environment/terraform.tfvars`
+  - store private key in `terraform/environment/bosh-ssh`
 - set the following environment variables for your AWS environment. (a neat tool for managing environment variables for projects is [direnv](http://direnv.net/))
 
 ```
@@ -102,3 +103,11 @@ $ bosh deploy
 ```
 
 - Browse to *http://${CONCOURSE_EIP}:8080*
+
+----
+TODO:
+- move BOSH to private subnet
+- move concourse to private subnet
+- move concourse to https
+- deploy bastion host
+- add more fine grain security groups for internal VPC comms
