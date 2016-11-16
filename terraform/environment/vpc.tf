@@ -13,7 +13,6 @@ module "nat_gateways" {
   vpc_id            = "${module.vpc.vpc_id}"
   public_subnet_ids = ["${module.public_subnets.subnet_ids}"]
   azs               = "${var.aws_azs}"
-  az_count          = "${length(var.aws_azs)}"
 }
 module "allow_all_internal_security_groups" {
   source                  = "../modules/aws_security_groups/internal"

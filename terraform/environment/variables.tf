@@ -37,9 +37,6 @@ variable "private2_cidrs" {
 variable "private3_cidrs" {
   type    = "list"
 }
-variable "rds_cidrs" {
-  type    = "list"
-}
 
 variable "restricted_public_cidrs" {
   type = "list"

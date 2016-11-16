@@ -11,6 +11,8 @@ This repository will provision AWS infrastructure, BOSH and Concourse.  From the
 ## Steps
 #### 1. terraform provisioning of AWS resources
 - create the `./terraform/environment/terraform.tfvars` file describing the desired settings (example is provided in `terraform/environment/terraform.tfvars.example`)
+  - populate your desired network cidr ranges for your VPC and subnets.
+  - set the list of approved public ip addresses as `restricted_public_cidrs`.  These IPs will be permitted to connect to bosh and concourse (will be added as source IPs to security group rules)
 - create an ssh keypair.
   - place public key as variable `bosh_ssh_public_key` in `./terraform/environment/terraform.tfvars`
   - store private key in `terraform/environment/bosh-ssh`
@@ -83,7 +85,7 @@ $ bosh upload release https://bosh.io/d/github.com/cloudfoundry-incubator/garden
 - determine the concourse EIP
 
 ```
-$ CONCOURSE_EIP=$(terraform output -state=terraform/environment/terraform.tfstate concourse_eip)
+$ export CONCOURSE_EIP=$(terraform output -state=terraform/environment/terraform.tfstate concourse_eip)
 ```
  - create a bosh deployment manifest
 
@@ -107,6 +109,7 @@ $ bosh deploy
 ----
 TODO:
 - move BOSH to private subnet
+- provide option to use RDS for BOSH
 - move concourse to private subnet
 - move concourse to https
 - deploy bastion host
