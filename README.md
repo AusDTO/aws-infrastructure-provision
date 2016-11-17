@@ -12,16 +12,17 @@ This repository will provision AWS infrastructure, BOSH and Concourse.  From the
 #### 1. terraform provisioning of AWS resources
 - create the `./terraform/environment/terraform.tfvars` file describing the desired settings (example is provided in `terraform/environment/terraform.tfvars.example`)
   - populate your desired network cidr ranges for your VPC and subnets.
-  - set the list of approved public ip addresses as `restricted_public_cidrs`.  These IPs will be permitted to connect to bosh and concourse (will be added as source IPs to security group rules)
+  - set the list of approved public ip addresses as variable `restricted_public_cidrs`.  These IPs will be permitted to connect to bosh and concourse (will be added as source IPs to security group rules).
 - create an ssh keypair.
-  - place public key as variable `bosh_ssh_public_key` in `./terraform/environment/terraform.tfvars`
-  - store private key in `terraform/environment/bosh-ssh`
+  - `ssh-keygen -N "" -f terraform/environment/bosh-ssh`
+  - place public key from file `terraform/environment/bosh-ssh.pub` as variable `bosh_ssh_public_key` in `./terraform/environment/terraform.tfvars`
+  - leave the private key as filename `terraform/environment/bosh-ssh` as the deployment of the bosh-director expects it.
 - set the following environment variables for your AWS environment. (a neat tool for managing environment variables for projects is [direnv](http://direnv.net/))
 
 ```
 $ export AWS_ACCESS_KEY_ID="anaccesskey"
 $ export AWS_SECRET_ACCESS_KEY="asecretkey"
-$ export AWS_DEFAULT_REGION="us-west-2"
+$ export AWS_DEFAULT_REGION="ap-southeast-2"
 ```
 - run terraform (typically takes 2-3 minutes)
 
@@ -42,7 +43,7 @@ $ BOSH_PASSWORD=big-secret ./bin/make_bosh_manifest_s3.sh
 ```
 $ bosh-init deploy bosh-director.yml
 ```
-- Determine BOSH IP address and login using username `admin` and `big-secret`
+- Determine BOSH IP address and login using username `admin` and `$BOSH_PASSWORD` from above
 
 ```
 $ bosh target `terraform output -state=terraform/environment/terraform.tfstate bosh_eip`
