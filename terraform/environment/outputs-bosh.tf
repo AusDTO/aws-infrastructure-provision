@@ -51,3 +51,8 @@ output "aws_az2" {
 output "aws_az3" {
   value = "${element(var.aws_azs, 2)}"
 }
+
+
+output "bosh_rds_host" {
+  value = "${module.bosh_rds.rds_url}"
+}
