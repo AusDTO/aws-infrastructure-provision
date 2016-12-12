@@ -16,3 +16,6 @@ private3_cidrs = ["10.0.50.0/24","10.0.51.0/24","10.0.52.0/24"]
 
 bosh_region = "ap-southeast-2"
 bosh_az = "ap-southeast-2a"
+
+bosh_rds_username = "postgres"
+bosh_rds_password = "postgrespassword"

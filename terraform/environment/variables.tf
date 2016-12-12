@@ -59,3 +59,11 @@ variable "bosh_az" {
 variable "bosh_subnet_cidr" {
   type    = "string"
 }
+
+variable "bosh_rds_username" {
+  type = "string"
+}
+
+variable "bosh_rds_password" {
+  type = "string"
+}
